@@ -18,22 +18,23 @@ public class Board {
     public Board(int ploc, int row, int length) {
         this.board = new String[]{
                 "X", "X", "X", "X", "X", "X\n",
-                "X", "o", "o", "o", "o", "X\n",
-                "X", "o", "o", "o", "X", "X\n",
-                "X", "o", "X", "V", "X", "X\n",
-                "X", "o", "o", "X", "o", "X\n",
-                "X", "o", "o", "X", "o", "X\n",
-                "X", "X", "o", "o", "o", "X\n",
-                "X", "X", "X", "X", "o", "X\n",
-                "X", "X", "X", "I", "o", "X\n",
-                "X", "X", "X", "X", "X", "o\n",
+                "X", "I", "X", "o", "o", "X\n",
+                "X", "o", "X", "o", "X", "X\n",
+                "X", "o", "X", "o", "X", "X\n",
+                "X", "o", "X", "o", "X", "X\n",
+                "X", "o", "X", "o", "X", "X\n",
+                "X", "o", "X", "o", "X", "X\n",
+                "X", "o", "X", "o", "X", "X\n",
+                "X", "o", "o", "o", "o", "o\n",
+                "X", "X", "X", "X", "X", "^\n",
+                "X", "X", "X", "X", "X", "X\n",
 
         };
         this.visted = new ArrayList<>();
         this.ploc = ploc;
         this.row = row;
         this.length = length;
-        this.direction = Direction.RIGHT;
+        this.direction = Direction.UP;
         //setUP();
     }
 
@@ -138,18 +139,20 @@ public class Board {
         } else {
             num += row;
         }
+        if (getInfrontType().equalsIgnoreCase("X"))
+            MyClass.setStopped();
+        else {
+            if (get(ploc, 1).contains("\n"))
+                setChar(ploc, "y\n");
+            else
+                setChar(ploc, "y");
 
-        if (get(ploc, 1).contains("\n"))
-            setChar(ploc, "y\n");
-        else
-            setChar(ploc, "y");
-
-        if (get(num, 1).contains("\n"))
-            setChar(num, direction.getSymbole() + "\n");
-        else
-            setChar(num, direction.getSymbole());
-        ploc = num;
-
+            if (get(num, 1).contains("\n"))
+                setChar(num, direction.getSymbole() + "\n");
+            else
+                setChar(num, direction.getSymbole());
+            ploc = num;
+        }
     }
 
     public void setDirection(Direction direction) {
@@ -177,7 +180,30 @@ public class Board {
         else if (direction == Direction.LEFT)
             direction = Direction.RIGHT;
 
-        System.out.println("LOOKING: " + direction.getSymbole());
+    }
+
+    public void right() {
+        if (direction == Direction.UP)
+            direction = Direction.RIGHT;
+        else if (direction == Direction.RIGHT)
+            direction = Direction.DOWN;
+        else if (direction == Direction.DOWN)
+            direction = Direction.LEFT;
+        else if (direction == Direction.LEFT)
+            direction = Direction.UP;
+
+    }
+
+    public void left() {
+        if (direction == Direction.UP)
+            direction = Direction.LEFT;
+        else if (direction == Direction.RIGHT)
+            direction = Direction.UP;
+        else if (direction == Direction.DOWN)
+            direction = Direction.RIGHT;
+        else if (direction == Direction.LEFT)
+            direction = Direction.DOWN;
+
     }
 }
 
