@@ -53,7 +53,7 @@ public class Window extends JFrame {
                             try {
 
                                 String end = ss[i];
-                                end = end.replace("karol", "game.getBoard()");
+                                end = end.replace("JKarol", "game.getBoard()");
                                 if (end.contains("setDirection(")) {
                                     String dir = end.split("\\.")[2].replace("setDirection(", "").replace(")", "");
                                     System.out

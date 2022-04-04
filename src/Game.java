@@ -12,9 +12,8 @@ public class Game {
     private Game game;
 
     public Game() {
-        this.board = new Board(21, 6, 6);
+        this.board = new Board(53, 6, 11);
         this.game = this;
-        Direction direction = Direction.LEFT;
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
