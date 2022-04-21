@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Window extends JFrame {
@@ -26,15 +29,17 @@ public class Window extends JFrame {
         surface.add(jTextArea);
 
 
-        JButton button = new JButton("CLICK TO RUN");
-        button.setBounds(1000, 1200, 200, 1000);
-        button.setBackground(Color.GREEN);
-        button.setForeground(Color.WHITE);
-        button.setOpaque(true);
+        ImageIcon icon = new ImageIcon("Button.png");
+        JButton button = new JButton(icon);
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 String s = jTextArea.getText();
+                System.out.println("232332");
 
                 String classNameA = "ExampleClass";
                 String codeA =
@@ -74,11 +79,6 @@ public class Window extends JFrame {
                                 System.out.println("ERROR");
                             }
 
-                            java.awt.EventQueue.invokeLater(new Runnable() {
-                                public void run() {
-                                    button.setText("23232");
-                                }
-                            });
                         }
                         String footer =
                                 "}catch(Exception e){}" +
