@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
@@ -19,6 +20,7 @@ public class Surface extends JPanel {
     private BufferedImage DEAD;
     private BufferedImage AMOGUS;
     private BufferedImage BRICKS;
+    private BufferedImage GOAL;
     private BufferedImage DIRT;
     private Board board;
 
@@ -55,15 +57,16 @@ public class Surface extends JPanel {
 
         try {
 
-            UP = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\DREAM_DOWN.png"));
-            DOWN = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\DREAM_UP.png"));
-            RIGHT = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\DREAM_RIGHT.png"));
-            LEFT = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\DREAM_LEFT.png"));
-            DEAD = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\DREAM_DEAD.png"));
-            AMOGUS = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\AMOGUS.png"));
-            BRICKS = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\BRICK.png"));
-            DIRT = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\DIRT.png"));
-            VISITED = ImageIO.read(new File("C:\\USers\\Christian\\Desktop\\VISITED.png"));
+            UP = ImageIO.read(new File("src/sprites/DREAM_DOWN.png"));
+            DOWN = ImageIO.read(new File("src/sprites/DREAM_UP.png"));
+            RIGHT = ImageIO.read(new File("src/sprites/DREAM_RIGHT.png"));
+            LEFT = ImageIO.read(new File("src/sprites/DREAM_LEFT.png"));
+            DEAD = ImageIO.read(new File("src/sprites/DREAM_DEAD.png"));
+            AMOGUS = ImageIO.read(new File("src/sprites/AMOGUS.png"));
+            BRICKS = ImageIO.read(new File("src/sprites/BRICK.png"));
+            DIRT = ImageIO.read(new File("src/sprites/DIRT.png"));
+            VISITED = ImageIO.read(new File("src/sprites/VISITED.png"));
+            GOAL = ImageIO.read(new File("src/sprites/GOAL.png"));
         } catch (IOException ex) {
 
             Logger.getLogger(Surface.class.getName()).log(
@@ -155,9 +158,7 @@ public class Surface extends JPanel {
                     i = 50;
                 }
             } else if (string.equalsIgnoreCase("I") || string.equalsIgnoreCase("I\n")) {
-                graphics.setColor(new Color(2, 167, 2));
-                graphics.fillRoundRect(i, y, 70, 60, 25, 25);
-
+                graphics.drawImage(GOAL, i, y, null);
                 i += 70;
                 count++;
                 if (count == 6) {
@@ -177,6 +178,7 @@ public class Surface extends JPanel {
                 }
             }
         }
+        setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
 

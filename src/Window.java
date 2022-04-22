@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,10 +28,14 @@ public class Window extends JFrame {
         jTextArea.setVisible(true);
         jTextArea.setPreferredSize(new Dimension(500, 500));
         jTextArea.setFont(new Font("Arial", 1, 20));
+        TitledBorder border = BorderFactory.createTitledBorder("Input");
+        border.setTitlePosition(TitledBorder.ABOVE_TOP);
+        border.setTitleFont(new Font("Arial", 1, 70));
+        jTextArea.setBorder(border);
         surface.add(jTextArea);
 
 
-        ImageIcon icon = new ImageIcon("Button.png");
+        ImageIcon icon = new ImageIcon("src/sprites/Button.png");
         JButton button = new JButton(icon);
         button.setOpaque(false);
         button.setContentAreaFilled(false);
@@ -49,12 +55,13 @@ public class Window extends JFrame {
 
                 String[] ss = jTextArea.getText().split(";");
                 new Thread(new Runnable() {
-                    String codeB =  "import enums.Direction;\npublic class ExampleClass {" + "\n" +
+                    String codeB = "import enums.Direction;\npublic class ExampleClass {" + "\n" +
                             "    public static void exampleMethod(String name,Game game) {" + "\n"
                             + "try{\n";
+
                     @Override
                     public void run() {
-                        for(int i =0; i < ss.length;i++) {
+                        for (int i = 0; i < ss.length; i++) {
                             try {
 
                                 String end = ss[i];
@@ -101,7 +108,7 @@ public class Window extends JFrame {
         surface.add(button);
 
         setTitle("Basic shapes");
-        setSize(2000, 2500);
+        setSize(200000, 20000);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
